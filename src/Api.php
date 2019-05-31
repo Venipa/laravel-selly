@@ -48,7 +48,7 @@ class Api
         $this->client = new Client([
             'auth' => [
                 $this->config['email'],
-                $this->config['apiKey'],
+                $this->config['api']['key'],
             ],
             'headers' => [
                 'Content-Type' => 'application/json',

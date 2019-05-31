@@ -20,7 +20,23 @@ return [
     | The API Key for your selly account. See https://selly.gg/settings
     |
      */
-    'apiKey' => env('SELLY_API_KEY'),
+    'api' => [
+        'key' => env('SELLY_API_KEY'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Selly Webhook Secret
+    |--------------------------------------------------------------------------
+    |
+    | The webhook secret for verifying the webhook integrity.
+    | See https://selly.gg/settings
+    |
+     */
+    'webhook' => [
+        'secret' => env('SELLY_WEBHOOK_SECRET'),
+        'header' => env('SELLY_WEBHOOK_HEADER', 'X-Selly-Signature'),
+    ],
 
     /*
     |--------------------------------------------------------------------------
