@@ -156,6 +156,13 @@ class Order extends RestApi
     protected $custom;
 
     /**
+     * The order statuses lookup this order can be.
+     *
+     * @var array
+     */
+    private $orderStatuses;
+
+    /**
      * Initialise a order.
      *
      * @param $order The raw order object.
@@ -163,6 +170,17 @@ class Order extends RestApi
     public function __construct(object $order = null)
     {
         parent::__construct('/orders', $order);
+
+        $this->orderStatuses = [
+            0 => 'No payment has been received',
+            51 => 'PayPal dispute/reversal',
+            52 => 'Order blocked due to risk level exceeding the maximum for the product',
+            53 => 'Partial payment. When crypto currency orders do not receive the full amount required due to fees, etc.',
+            54 => 'Crypto currency transaction confirming',
+            55 => 'Payment pending on PayPal. Most commonly due to e-checks.',
+            56 => 'Refunded',
+            100 => 'Payment complete',
+        ];
     }
 
     /**
@@ -196,6 +214,16 @@ class Order extends RestApi
     public function getProduct()
     {
         return Product::find($this->getProductId());
+    }
+
+    /**
+     * Get the order status message.
+     *
+     * @return  string
+     */
+    public function getStatusMessage(): string
+    {
+        return $this->orderStatuses[$this->getStatus()];
     }
 
     /**

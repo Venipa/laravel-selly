@@ -97,12 +97,22 @@ class Coupon extends RestApi
      */
     protected function create(string $code, int $discount = 50, array $products = null, $maxUses = null): self
     {
-        return new self(parent::save([
+        return $this->save([
             'code' => $code,
             'discount' => $discount,
             'product_ids' => empty($products) ? ['all_products'] : $products,
             'max_uses' => $maxUses,
-        ]));
+        ]);
+    }
+
+    /**
+     * Save the coupon.
+     *
+     * @return \McCaulay\Selly\Coupon
+     */
+    public function save(): object
+    {
+        return new self(parent::save());
     }
 
     /**

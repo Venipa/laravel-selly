@@ -6,6 +6,48 @@ use Illuminate\Support\Collection;
 class Query extends RestApi
 {
     /**
+     * Unique token for the query.
+     *
+     * @var string
+     */
+    protected $secret;
+
+    /**
+     * Status of the query.
+     *
+     * @var integer
+     */
+    protected $status;
+
+    /**
+     * Email address of the customer that initiated the order.
+     *
+     * @var string
+     */
+    protected $email;
+
+    /**
+     * IP address of the customer that initiated the order.
+     *
+     * @var string
+     */
+    protected $ip_address;
+
+    /**
+     * Two letter country code of the customer that initiated the query.
+     *
+     * @var string
+     */
+    protected $country_code;
+
+    /**
+     * The url of the avatar.
+     *
+     * @var string
+     */
+    protected $avatar_url;
+
+    /**
      * Initialise a query.
      *
      * @param $payment The raw query object.
@@ -46,8 +88,18 @@ class Query extends RestApi
     protected function create(): self
     {
         // TODO
-        return new self(parent::save([
-        ]));
+        return $this->save([
+        ]);
+    }
+
+    /**
+     * Save the query.
+     *
+     * @return \McCaulay\Selly\Query
+     */
+    public function save(): object
+    {
+        return new self(parent::save());
     }
 
     /**

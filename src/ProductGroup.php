@@ -6,6 +6,20 @@ use Illuminate\Support\Collection;
 class ProductGroup extends RestApi
 {
     /**
+     * The title of the product group.
+     *
+     * @var string
+     */
+    protected $title;
+
+    /**
+     * The product ids that this group is made up of.
+     *
+     * @var array
+     */
+    protected $product_ids;
+
+    /**
      * Initialise a product group.
      *
      * @param $payment The raw product group object.
@@ -41,13 +55,26 @@ class ProductGroup extends RestApi
     /**
      * Create a product group.
      *
+     * @param $title The title of the product group.
+     * @param $productIds The product ids that this group is made up of.
      * @return \McCaulay\Selly\ProductGroup
      */
-    protected function create(): self
+    protected function create(string $title, array $productIds): self
     {
-        // TODO
-        return new self(parent::save([
-        ]));
+        return $this->save([
+            'title' => $title,
+            'product_ids' => $productIds,
+        ]);
+    }
+
+    /**
+     * Save the product group.
+     *
+     * @return \McCaulay\Selly\ProductGroup
+     */
+    public function save(): object
+    {
+        return new self(parent::save());
     }
 
     /**
@@ -58,5 +85,49 @@ class ProductGroup extends RestApi
     public function update(): object
     {
         return new self(parent::update());
+    }
+
+    /**
+     * Set the title of the product group.
+     *
+     * @param  string  $title  The title of the product group.
+     * @return  self
+     */
+    public function setTitle(string $title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * Get the title of the product group.
+     *
+     * @return  string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set the product ids that this group is made up of.
+     *
+     * @param  array  $product_ids  The product ids that this group is made up of.
+     * @return  self
+     */
+    public function setProductIds(array $product_ids)
+    {
+        $this->product_ids = $product_ids;
+        return $this;
+    }
+
+    /**
+     * Get the product ids that this group is made up of.
+     *
+     * @return  array
+     */
+    public function getProductIds()
+    {
+        return $this->product_ids;
     }
 }
