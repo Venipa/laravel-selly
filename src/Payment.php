@@ -2,6 +2,7 @@
 namespace McCaulay\Selly;
 
 use Illuminate\Support\Collection;
+use McCaulay\Selly\Order;
 
 class Payment extends RestApi
 {
@@ -118,11 +119,11 @@ class Payment extends RestApi
      *
      * @param $attributes The object attributes. If null, then it gets the
      * instances attributes.
-     * @return \McCaulay\Selly\Payment
+     * @return \McCaulay\Selly\Order
      */
     public function save(array $attributes = null): object
     {
-        return new self(parent::save($attributes));
+        return new Order(parent::save($attributes));
     }
 
     /**
