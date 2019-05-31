@@ -19,7 +19,7 @@ class Selly
      * @param string $id The coupon id.
      * @return \McCaulay\Selly\Coupon
      */
-    public function coupon(string $id): Order
+    public function coupon(string $id): Coupon
     {
         return Coupon::find($id);
     }
