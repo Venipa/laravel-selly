@@ -81,18 +81,6 @@ class Query extends RestApi
     }
 
     /**
-     * Create a query.
-     *
-     * @return \McCaulay\Selly\Query
-     */
-    protected function create(): self
-    {
-        // TODO
-        return $this->save([
-        ]);
-    }
-
-    /**
      * Save the query.
      *
      * @return \McCaulay\Selly\Query

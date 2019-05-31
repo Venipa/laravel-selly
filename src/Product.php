@@ -56,6 +56,41 @@ class Product extends RestApi
     protected $gateways;
 
     /**
+     * Only viewable by direct link when logged in.
+     *
+     * @var bool
+     */
+    protected $private;
+
+    /**
+     * Product won't show on user profile.
+     *
+     * @var bool
+     */
+    protected $unlisted;
+
+    /**
+     * A product seller note.
+     *
+     * @var string
+     */
+    protected $seller_note;
+
+    /**
+     * The maximum quantity.
+     *
+     * @var int
+     */
+    protected $maximum_quantity;
+
+    /**
+     * The minimum quantity.
+     *
+     * @var int
+     */
+    protected $minimum_quantity;
+
+    /**
      * The actual product serials for product_type 2 and 4.
      *
      * @var string
@@ -127,29 +162,6 @@ class Product extends RestApi
     protected function find(string $id): object
     {
         return new self(parent::find($id));
-    }
-
-    /**
-     * Create a product.
-     *
-     * @param $title The title of the product.
-     * @param $description The raw markdown description of the product.
-     * @param $price The price of the product for 1 quantity.
-     * @param $currency The ISO 4217 currency code used.
-     * @param $productType The product type. Determines the stock.
-     * @param $info The actual product serials for product_type 2 and 4.
-     * @return \McCaulay\Selly\Product
-     */
-    protected function create(string $title, string $description, float $price, string $currency, int $productType, string $info): self
-    {
-        return $this->save([
-            'title' => $title,
-            'description' => $description,
-            'price' => $price,
-            'currency' => $currency,
-            'product_type' => $productType,
-            'info' => $info,
-        ]);
     }
 
     /**
@@ -327,6 +339,116 @@ class Product extends RestApi
     public function getGateways()
     {
         return $this->gateways;
+    }
+
+    /**
+     * Set only viewable by direct link when logged in.
+     *
+     * @param  bool  $private  Only viewable by direct link when logged in.
+     * @return  self
+     */
+    public function setPrivate(bool $private)
+    {
+        $this->private = $private;
+        return $this;
+    }
+
+    /**
+     * Get only viewable by direct link when logged in.
+     *
+     * @return  bool
+     */
+    public function getPrivate()
+    {
+        return $this->private;
+    }
+
+    /**
+     * Set product won't show on user profile.
+     *
+     * @param  bool  $unlisted  Product won't show on user profile.
+     * @return  self
+     */
+    public function setUnlisted(bool $unlisted)
+    {
+        $this->unlisted = $unlisted;
+        return $this;
+    }
+
+    /**
+     * Get product won't show on user profile.
+     *
+     * @return  bool
+     */
+    public function getUnlisted()
+    {
+        return $this->unlisted;
+    }
+
+    /**
+     * Set a product seller note.
+     *
+     * @param  string  $seller_note  A product seller note.
+     * @return  self
+     */
+    public function setSellerNote(string $seller_note)
+    {
+        $this->seller_note = $seller_note;
+        return $this;
+    }
+
+    /**
+     * Get a product seller note.
+     *
+     * @return  string
+     */
+    public function getSellerNote()
+    {
+        return $this->seller_note;
+    }
+
+    /**
+     * Set the maximum quantity.
+     *
+     * @param  int  $maximum_quantity  The maximum quantity.
+     * @return  self
+     */
+    public function setMaximumQuantity(int $maximum_quantity)
+    {
+        $this->maximum_quantity = $maximum_quantity;
+        return $this;
+    }
+
+    /**
+     * Get the maximum quantity.
+     *
+     * @return  int
+     */
+    public function getMaximumQuantity()
+    {
+        return $this->maximum_quantity;
+    }
+
+    /**
+     * Set the minimum quantity.
+     *
+     * @param  int  $minimum_quantity  The minimum quantity.
+     * @return  self
+     */
+    public function setMinimumQuantity(int $minimum_quantity)
+    {
+        $this->minimum_quantity = $minimum_quantity;
+        return $this;
+    }
+
+    /**
+     * Get the minimum quantity.
+     *
+     * @return  int
+     */
+    public function getMinimumQuantity()
+    {
+        return $this->minimum_quantity;
     }
 
     /**

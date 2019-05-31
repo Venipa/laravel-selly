@@ -85,27 +85,6 @@ class Coupon extends RestApi
     }
 
     /**
-     * Create a coupon.
-     *
-     * @param $code The coupon code.
-     * @param $discount The coupon discount as a percentage.
-     * @param $products An array of product ids this coupon is valid for. If it
-     * is null then it is valid for all products.
-     * @param $maxUses The maximum number of times the coupon can be used. If it
-     * is null then there is no limit.
-     * @return \McCaulay\Selly\Coupon
-     */
-    protected function create(string $code, int $discount = 50, array $products = null, $maxUses = null): self
-    {
-        return $this->save([
-            'code' => $code,
-            'discount' => $discount,
-            'product_ids' => empty($products) ? ['all_products'] : $products,
-            'max_uses' => $maxUses,
-        ]);
-    }
-
-    /**
      * Save the coupon.
      *
      * @return \McCaulay\Selly\Coupon

@@ -114,18 +114,6 @@ class Payment extends RestApi
     }
 
     /**
-     * Create a payment.
-     *
-     * @return \McCaulay\Selly\Payment
-     */
-    protected function create(): self
-    {
-        // TODO
-        return $this->save([
-        ]);
-    }
-
-    /**
      * Save the payment.
      *
      * @return \McCaulay\Selly\Payment

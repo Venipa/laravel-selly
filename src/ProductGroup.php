@@ -53,21 +53,6 @@ class ProductGroup extends RestApi
     }
 
     /**
-     * Create a product group.
-     *
-     * @param $title The title of the product group.
-     * @param $productIds The product ids that this group is made up of.
-     * @return \McCaulay\Selly\ProductGroup
-     */
-    protected function create(string $title, array $productIds): self
-    {
-        return $this->save([
-            'title' => $title,
-            'product_ids' => $productIds,
-        ]);
-    }
-
-    /**
      * Save the product group.
      *
      * @return \McCaulay\Selly\ProductGroup
