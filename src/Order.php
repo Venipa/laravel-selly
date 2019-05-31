@@ -148,6 +148,13 @@ class Order extends RestApi
     protected $exchange_rate;
 
     /**
+     * The url to redirect to for payment.
+     *
+     * @var string
+     */
+    protected $url;
+
+    /**
      * The custom inputs that the customer inputted. The keys represent the
      * index of the custom input specified in the product.
      *
@@ -404,6 +411,16 @@ class Order extends RestApi
     public function getExchangeRate()
     {
         return $this->exchange_rate;
+    }
+
+    /**
+     * Get the url to redirect to for payment.
+     *
+     * @return  string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 
     /**
