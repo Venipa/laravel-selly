@@ -55,11 +55,13 @@ class ProductGroup extends RestApi
     /**
      * Save the product group.
      *
+     * @param $attributes The object attributes. If null, then it gets the
+     * instances attributes.
      * @return \McCaulay\Selly\ProductGroup
      */
-    public function save(): object
+    public function save(array $attributes = null): object
     {
-        return new self(parent::save());
+        return new self(parent::save($attributes));
     }
 
     /**

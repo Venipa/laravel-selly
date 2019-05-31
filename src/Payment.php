@@ -87,7 +87,7 @@ class Payment extends RestApi
      */
     public function __construct(object $payment = null)
     {
-        parent::__construct('/payments', $payment);
+        parent::__construct('/pay', $payment);
     }
 
     /**
@@ -116,11 +116,13 @@ class Payment extends RestApi
     /**
      * Save the payment.
      *
+     * @param $attributes The object attributes. If null, then it gets the
+     * instances attributes.
      * @return \McCaulay\Selly\Payment
      */
-    public function save(): object
+    public function save(array $attributes = null): object
     {
-        return new self(parent::save());
+        return new self(parent::save($attributes));
     }
 
     /**

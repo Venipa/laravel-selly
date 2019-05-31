@@ -87,11 +87,13 @@ class Coupon extends RestApi
     /**
      * Save the coupon.
      *
+     * @param $attributes The object attributes. If null, then it gets the
+     * instances attributes.
      * @return \McCaulay\Selly\Coupon
      */
-    public function save(): object
+    public function save(array $attributes = null): object
     {
-        return new self(parent::save());
+        return new self(parent::save($attributes));
     }
 
     /**

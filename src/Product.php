@@ -167,11 +167,13 @@ class Product extends RestApi
     /**
      * Save the product.
      *
+     * @param $attributes The object attributes. If null, then it gets the
+     * instances attributes.
      * @return \McCaulay\Selly\Product
      */
-    public function save(): object
+    public function save(array $attributes = null): object
     {
-        return new self(parent::save());
+        return new self(parent::save($attributes));
     }
 
     /**
