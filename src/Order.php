@@ -126,6 +126,20 @@ class Order extends RestApi
     protected $crypto_channel;
 
     /**
+     * The number of confirmations required before the order is completed.
+     *
+     * @var int
+     */
+    protected $confirmations_needed;
+
+    /**
+     * The order quantity.
+     *
+     * @var int
+     */
+    protected $quantity;
+
+    /**
      * The HTTP referrer for the product page. Will be null if the HTTP referrer
      * was not present/valid.
      *
@@ -431,5 +445,25 @@ class Order extends RestApi
     public function getCustom()
     {
         return $this->custom;
+    }
+
+    /**
+     * Get the number of confirmations required before the order is completed.
+     *
+     * @return  int
+     */
+    public function getConfirmationsNeeded()
+    {
+        return $this->confirmations_needed;
+    }
+
+    /**
+     * Get the order quantity.
+     *
+     * @return  int
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
     }
 }
