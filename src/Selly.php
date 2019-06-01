@@ -155,4 +155,26 @@ class Selly
         }
         return $webhook->getOrder();
     }
+
+    /**
+     * Convert from satoshis to another currency.
+     *
+     * @param int $satoshis
+     * @return string
+     */
+    public function fromSatoshi(int $satoshis): string
+    {
+        return $satoshis / 100000000;
+    }
+
+    /**
+     * Convert from another currency to satoshis.
+     *
+     * @param string $currency
+     * @return int
+     */
+    public function toSatoshi(string $currency): int
+    {
+        return $currency * 100000000;
+    }
 }
