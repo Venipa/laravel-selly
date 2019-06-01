@@ -22,9 +22,11 @@ SELLY_WEBHOOK_SECRET=yourWebhookSecret
 
 ## Usage
 
+### Creating a payment
 ``` php
-// Creating a payment
-$payment = new \McCaulay\Selly\Payment();
+use McCaulay\Selly\Payment;
+
+$payment = new Payment();
 $order = $payment->setTitle('Test Product')
     ->setGateway('Bitcoin')
     ->setEmail('example@example.com')
@@ -38,37 +40,48 @@ $order = $payment->setTitle('Test Product')
 $orderId = $order->getId(); // Get the created order id
 ```
 
+### Get all coupons
 ``` php
-// Get all coupons
-$coupons = \McCaulay\Selly\Coupon::all();
+use McCaulay\Selly\Coupon;
+$coupons = Coupon::all();
 ```
 
+### Get an order from a webhook request
 ``` php
-// Get an order from a webhook request
-$order = \McCaulay\Selly\Facades\Selly::webhook($request);
+use McCaulay\Selly\Facades\Selly;
+
+$order = Selly::webhook($request);
 $orderId = $order->getId(); // Get the webhook order id
 ```
 
+### Convert a value from a currency to Satoshi
 ``` php
-// Convert a value from a currency to Satoshi
-$satoshi = \McCaulay\Selly\Facades\Selly::toSatoshi('0.04710219');
+use McCaulay\Selly\Facades\Selly;
+
+$satoshi = Selly::toSatoshi('0.04710219');
 // $satosi = 4710219;
 ```
 
+### Convert a value from Satoshi to a currency
 ``` php
-// Convert a value from Satoshi to a currency
-$satoshi = \McCaulay\Selly\Facades\Selly::fromSatoshi(4710219);
+use McCaulay\Selly\Facades\Selly;
+
+$satoshi = Selly::fromSatoshi(4710219);
 // $satosi = '0.04710219';
 ```
 
+### Get an order by id
 ``` php
-// Get an order by id
-$order = \McCaulay\Selly\Facades\Selly::order('174e2e74-1939-351b-aa2b-6921f11a3d82');
+use McCaulay\Selly\Facades\Selly;
+
+$order = Selly::order('174e2e74-1939-351b-aa2b-6921f11a3d82');
 ```
 
 ``` php
+use McCaulay\Selly\Order;
+
 // Another way to get order by id
-$order = \McCaulay\Selly\Order::find('174e2e74-1939-351b-aa2b-6921f11a3d82');
+$order = Order::find('174e2e74-1939-351b-aa2b-6921f11a3d82');
 ```
 
 ## Credits
