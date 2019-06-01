@@ -13,10 +13,62 @@ You can install the package via composer:
 composer require mccaulay/laravel-selly
 ```
 
+## Environment Variables
+```
+SELLY_EMAIL=your@email.com
+SELLY_API_KEY=yourApiKey
+SELLY_WEBHOOK_SECRET=yourWebhookSecret
+```
+
 ## Usage
 
 ``` php
-// Usage description here
+// Creating a payment
+$payment = new \McCaulay\Selly\Payment();
+$order = $payment->setTitle('Test Product')
+    ->setGateway('Bitcoin')
+    ->setEmail('example@example.com')
+    ->setValue(10)
+    ->setCurrency('USD')
+    ->setReturnUrl(secure_url('/'))
+    ->setWebhookUrl(secure_url('/example/webhook'))
+    ->setWhiteLabel(true)
+    ->setIpAddress($request->ip())
+    ->save();
+$orderId = $order->getId(); // Get the created order id
+```
+
+``` php
+// Get all coupons
+$coupons = \McCaulay\Selly\Coupon::all();
+```
+
+``` php
+// Get an order from a webhook request
+$order = \McCaulay\Selly\Facades\Selly::webhook($request);
+$orderId = $order->getId(); // Get the webhook order id
+```
+
+``` php
+// Convert a value from a currency to Satoshi
+$satoshi = \McCaulay\Selly\Facades\Selly::toSatoshi('0.04710219');
+// $satosi = 4710219;
+```
+
+``` php
+// Convert a value from Satoshi to a currency
+$satoshi = \McCaulay\Selly\Facades\Selly::fromSatoshi(4710219);
+// $satosi = '0.04710219';
+```
+
+``` php
+// Get an order by id
+$order = \McCaulay\Selly\Facades\Selly::order('174e2e74-1939-351b-aa2b-6921f11a3d82');
+```
+
+``` php
+// Another way to get order by id
+$order = \McCaulay\Selly\Order::find('174e2e74-1939-351b-aa2b-6921f11a3d82');
 ```
 
 ## Credits
