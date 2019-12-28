@@ -10,7 +10,7 @@ return [
     | The email address of your selly account.
     |
      */
-    'email' => env('SELLY_EMAIL'),
+    'email' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ return [
     |
      */
     'api' => [
-        'key' => env('SELLY_API_KEY'),
+        'key' => null,
     ],
 
     /*
@@ -34,8 +34,8 @@ return [
     |
      */
     'webhook' => [
-        'secret' => env('SELLY_WEBHOOK_SECRET'),
-        'header' => env('SELLY_WEBHOOK_HEADER', 'X-Selly-Signature'),
+        'secret' => null,
+        'header' => 'X-Selly-Signature',
     ],
 
     /*
@@ -46,6 +46,6 @@ return [
     | The API Endpoint for the selly API.
     |
      */
-    'endpoint' => env('SELLY_ENDPOINT', 'https://selly.gg/api/v2'),
+    'endpoint' => 'https://selly.gg/api/v2',
 
 ];
