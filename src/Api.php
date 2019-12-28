@@ -39,20 +39,25 @@ class Api
     public function __construct()
     {
         // Initalise the config
-        $this->config = config('selly');
+        $config = config('selly');
+        $this->setConfig($config);
+    }
+
+    public function setConfig($config = []) {
+        $config = array_merge_recursive($config, $config);
 
         $this->path = '/';
-        $this->endpoint = $this->config['endpoint'];
+        $this->endpoint = $config['endpoint'];
 
         // Initalise the guzzle client
         $this->client = new Client([
             'auth' => [
-                $this->config['email'],
-                $this->config['api']['key'],
+                $config['email'],
+                $config['api']['key'],
             ],
             'headers' => [
                 'Content-Type' => 'application/json',
-                'User-Agent' => config('app.name') . ' ' . $this->config['email'],
+                'User-Agent' => config('app.name') . ' ' . $config['email'],
             ],
         ]);
     }
