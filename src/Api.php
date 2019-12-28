@@ -44,20 +44,20 @@ class Api
     }
 
     public function setConfig($config = []) {
-        $config = array_merge_recursive($config, $config);
+        $this->config = array_merge_recursive($this->config, $config);
 
         $this->path = '/';
-        $this->endpoint = $config['endpoint'];
+        $this->endpoint = $this->config['endpoint'];
 
         // Initalise the guzzle client
         $this->client = new Client([
             'auth' => [
-                $config['email'],
-                $config['api']['key'],
+                $this->config['email'],
+                $this->config['api']['key'],
             ],
             'headers' => [
                 'Content-Type' => 'application/json',
-                'User-Agent' => config('app.name') . ' ' . $config['email'],
+                'User-Agent' => config('app.name') . ' ' . $this->config['email'],
             ],
         ]);
     }
