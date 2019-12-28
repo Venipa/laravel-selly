@@ -20,10 +20,10 @@ class SellyServiceProvider extends ServiceProvider
     /**
      * Register the application services.
      */
-    public function register(): void
+    public function register($configPath = null): void
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'selly');
+        $this->mergeConfigFrom($configPath ?: __DIR__ . '/../../config/config.php', 'selly');
 
         // Register the classes to use with the facade
         $this->app->bind('selly', 'McCaulay\Selly\Selly');
