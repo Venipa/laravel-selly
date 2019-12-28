@@ -40,6 +40,11 @@ class Api
     {
         // Initalise the config
         $this->config = config('selly');
+        $this->setConfig();
+    }
+
+    public function setConfig($config = []) {
+        $this->config = array_merge_recursive($this->config, $config);
 
         $this->path = '/';
         $this->endpoint = $this->config['endpoint'];
